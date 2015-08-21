@@ -14,6 +14,14 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
     private Button btn_0, btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_resta, btn_suma, btn_punto, btn_multi, btn_dividir, btn_borrar, btn_resultado;
     private TextView tv_result;
     private String cadena = "";
+    boolean decimal = false;
+    boolean suma = false;
+    boolean restar = false;
+    boolean multi = false;
+    boolean dividir = false;
+    Double[] numero = new Double[20];
+    Double resultado;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,17 +89,110 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        Button aux;
 
-        if ( v.getId() != R.id.btn_resultado && v.getId() != R.id.btn_borrar && v.getId() != R.id.tv_result  ){
-            aux = (Button)  findViewById(v.getId());
-            cadena=cadena + aux.getText().toString();
-            Toast.makeText(getApplicationContext(),aux.getText().toString(), Toast.LENGTH_LONG ).show();
-            tv_result.setText(cadena);
+        TextView pantalla = (TextView)findViewById(R.id.tv_result);
+        int seleccion = v.getId();
+        cadena = pantalla.getText().toString();
+
+        try {
+
+
+        switch (seleccion) {
+            case R.id.btn_0:
+                pantalla.setText(cadena + "0");
+                break;
+            case R.id.btn_1:
+                pantalla.setText(cadena + "1");
+                break;
+            case R.id.btn_2:
+                pantalla.setText(cadena + "2");
+                break;
+            case R.id.btn_3:
+                pantalla.setText(cadena + "3");
+                break;
+            case R.id.btn_4:
+                pantalla.setText(cadena + "4");
+                break;
+            case R.id.btn_5:
+                pantalla.setText(cadena + "5");
+                break;
+            case R.id.btn_6:
+                pantalla.setText(cadena + "6");
+                break;
+            case R.id.btn_7:
+                pantalla.setText(cadena + "7");
+                break;
+            case R.id.btn_8:
+                pantalla.setText(cadena + "8");
+                break;
+            case R.id.btn_9:
+                pantalla.setText(cadena + "9");
+                break;
+
+            case R.id.btn_punto:
+                if(decimal == false){
+                    pantalla.setText(cadena + ".");
+                    decimal=true;
+                }else {return;}
+
+                break;
+
+            case R.id.btn_resta:
+                restar = true;
+                numero[0] = Double.parseDouble(cadena);
+                pantalla.setText("");
+                decimal=false;
+                break;
+            case R.id.btn_suma:
+                suma=true;
+                numero[0] = Double.parseDouble(cadena);
+                pantalla.setText("");
+                decimal=false;
+                break;
+            case R.id.btn_dividir:
+                dividir=true;
+                numero[0] = Double.parseDouble(cadena);
+                pantalla.setText("");
+                decimal=false;
+                break;
+            case R.id.btn_multi:
+                multi=true;
+                numero[0] = Double.parseDouble(cadena);
+                pantalla.setText("");
+                decimal=false;
+                break;
+
+            case R.id.btn_resultado:
+                numero[1] = Double.parseDouble(cadena);
+
+                if(suma==true){
+                    resultado = numero [0] + numero [1];
+                    pantalla.setText(String.valueOf(resultado));
+                }else if (restar==true){
+                    resultado = numero [0] - numero [1];
+                    pantalla.setText(String.valueOf(resultado));
+                }else if (multi==true){
+                    resultado = numero [0] * numero [1];
+                    pantalla.setText(String.valueOf(resultado));
+                }else  if (dividir==true){
+                    resultado = numero [0] / numero [1];
+                    pantalla.setText(String.valueOf(resultado));
+                }
+                restar=false;
+                dividir=false;
+                suma=false;
+                multi=false;
+                break;
+
+
+
+            case R.id.btn_borrar:
+                pantalla.setText("");
+                decimal=false;
+                break;
         }
-        else if (v.getId() == R.id.btn_resultado){
-            
-
+        }catch (Exception e){
+            pantalla.setText("error");
         }
 
     }
