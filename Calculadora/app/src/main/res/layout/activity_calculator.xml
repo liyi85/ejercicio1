@@ -171,5 +171,14 @@
         android:layout_toEndOf="@+id/btn_3"
         android:background="#ff7c87" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Borrar"
+        android:id="@+id/btn_borrar"
+        android:layout_below="@+id/btn_0"
+        android:layout_toRightOf="@+id/btn_1"
+        android:layout_toEndOf="@+id/btn_1" />
+
 
 </RelativeLayout>
