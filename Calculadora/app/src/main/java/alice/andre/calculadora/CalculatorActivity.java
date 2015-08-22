@@ -21,6 +21,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
     boolean dividir = false;
     Double[] numero = new Double[20];
     Double resultado;
+    boolean masnum = true;
 
 
     @Override
@@ -99,63 +100,88 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
 
         switch (seleccion) {
             case R.id.btn_0:
-                pantalla.setText(cadena + "0");
+                if(masnum==true)
+                    pantalla.setText(cadena + "0");
                 break;
             case R.id.btn_1:
-                pantalla.setText(cadena + "1");
+                if(masnum==true)
+                    pantalla.setText(cadena + "1");
                 break;
             case R.id.btn_2:
-                pantalla.setText(cadena + "2");
+                if(masnum==true)
+                    pantalla.setText(cadena + "2");
                 break;
             case R.id.btn_3:
-                pantalla.setText(cadena + "3");
+                if(masnum==true)
+                    pantalla.setText(cadena + "3");
                 break;
             case R.id.btn_4:
-                pantalla.setText(cadena + "4");
+                if(masnum==true)
+                    pantalla.setText(cadena + "4");
                 break;
             case R.id.btn_5:
-                pantalla.setText(cadena + "5");
+                if(masnum==true)
+                    pantalla.setText(cadena + "5");
                 break;
             case R.id.btn_6:
-                pantalla.setText(cadena + "6");
+                if(masnum==true)
+                    pantalla.setText(cadena + "6");
                 break;
             case R.id.btn_7:
-                pantalla.setText(cadena + "7");
+                if(masnum==true)
+                    pantalla.setText(cadena + "7");
                 break;
             case R.id.btn_8:
-                pantalla.setText(cadena + "8");
+                if(masnum==true)
+                    pantalla.setText(cadena + "8");
                 break;
             case R.id.btn_9:
-                pantalla.setText(cadena + "9");
+                if(masnum==true)
+                    pantalla.setText(cadena + "9");
                 break;
 
             case R.id.btn_punto:
-                if(decimal == false){
-                    pantalla.setText(cadena + ".");
-                    decimal=true;
-                }else {return;}
-
+                if(masnum==true) {
+                    if (decimal == false) {
+                        pantalla.setText(cadena + ".");
+                        decimal = true;
+                    } else {
+                        return;
+                    }
+                }
                 break;
 
             case R.id.btn_resta:
+                if(masnum==false)
+                    masnum=true;
+
                 restar = true;
                 numero[0] = Double.parseDouble(cadena);
                 pantalla.setText("");
                 decimal=false;
                 break;
             case R.id.btn_suma:
+                if(masnum==false)
+                    masnum=true;
+
                 suma=true;
                 numero[0] = Double.parseDouble(cadena);
                 pantalla.setText("");
                 decimal=false;
                 break;
             case R.id.btn_dividir:
+                if(masnum==false)
+                    masnum=true;
+
                 dividir=true;
                 numero[0] = Double.parseDouble(cadena);
                 pantalla.setText("");
                 decimal=false;
                 break;
             case R.id.btn_multi:
+                if(masnum==false)
+                    masnum=true;
+                
                 multi=true;
                 numero[0] = Double.parseDouble(cadena);
                 pantalla.setText("");
@@ -182,6 +208,9 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
                 dividir=false;
                 suma=false;
                 multi=false;
+                masnum=false;
+
+
                 break;
 
 
