@@ -181,7 +181,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
             case R.id.btn_multi:
                 if(masnum==false)
                     masnum=true;
-                
+
                 multi=true;
                 numero[0] = Double.parseDouble(cadena);
                 pantalla.setText("");
